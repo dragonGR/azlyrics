@@ -33,7 +33,7 @@ def print_artist_music_lyrics(artist, music, lyrics):
     for line in lyrics:
         print(line, end="\n\n")
 
-def save_lyrics_to_file(path):
+def save_lyrics_to_file(path, lyrics):
     with open(path, "w") as f:
         f.write("\n".join(lyrics).strip())
 
@@ -55,6 +55,6 @@ def run():
     args = get_args()
     lyrics = get_lyrics(args.artist, args.music)
     if args.path:
-        save_lyrics_to_file(args.path)
+        save_lyrics_to_file(args.path, lyrics)
     else:
         print_artist_music_lyrics(args.artist, args.music, lyrics)
