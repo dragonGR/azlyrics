@@ -9,17 +9,19 @@ def url_from_artist_music(artist, music):
             artist = "rickastley"
             music = "nevergonnagiveyouup"
 
-        url = "https://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
+        url = "http://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
         return url
         
-def processing(generate_url, artist, title, save):
-    response = urllib.request.urlopen(generate_url)
-    read_lyrics = response.read()
-    soup = BeautifulSoup(read_lyrics)
-    lyrics = soup.find_all("div", attrs={"class": None, "id": None})
-    lyrics = [x.getText() for x in lyrics]
-    printing(artist, title, save, lyrics)
-    
+def get_page_from_url(url):
+    page = urllib.request.urlopen(url)
+    return page.read() 
+
+def get_lyrics_from_page(page):
+    soup = BeautifulSoup(page, "html.parser")
+    lyrics_tags = soup.find_all("div", attrs={"class": None, "id": None})
+    lyrics = [tag.getText() for tag in lyrics_tags]
+    return lyrics
+
 def printing(artist, title, save, lyrics):    
     for x in lyrics:
         print(x, end="\n\n")
