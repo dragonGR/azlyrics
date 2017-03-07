@@ -3,16 +3,16 @@ import urllib.request, urllib.error, urllib.parse
 import argparse
 
 def url_from_artist_music(artist, music):
-        if artist and music:
-            artist = artist.lower().replace(" ", "")
-            music = music.lower().replace(" ", "")
-        else:
-            artist = "rickastley"
-            music = "nevergonnagiveyouup"
+    if artist and music:
+        artist = artist.lower().replace(" ", "")
+        music = music.lower().replace(" ", "")
+    else:
+        artist = "rickastley"
+        music = "nevergonnagiveyouup"
 
-        url = "http://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
-        return url
-        
+    url = "http://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
+    return url
+
 def get_page_from_url(url):
     page = urllib.request.urlopen(url)
     return page.read() 
@@ -38,3 +38,18 @@ def get_lyrics(artist, music):
     lyrics = get_lyrics_from_page(page)
     return lyrics
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Fetch lyric from azlyric")
+    parser.add_argument("artist", metavar="Artist", type=str)
+    parser.add_argument("music", metavar="Music", type=str)
+    parser.add_argument("-s", "--save", metavar="path", help="Save to the file", default=False, dest="path")
+    args = parser.parse_args()
+    return args
+
+def run():
+    args = get_args()
+    lyrics = get_lyrics(args.artist, args.music)
+    if args.path:
+        save_lyrics_to_file(args.path)
+    else:
+        print_artist_music_lyric(args.artist, args.music, lyrics)
