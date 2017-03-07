@@ -1,4 +1,4 @@
-import unittest
+import unittest, sys
 
 from azlyrics import azlyrics 
 
@@ -40,3 +40,13 @@ class LyricTest(unittest.TestCase):
         mock_page = "<div>Run, Run</div><p>OKOKOK</p><div>Far Away</div>"
         self.assertEqual(expected, azlyrics.get_lyrics_from_page(mock_page));
 
+class PrintAndSaveTest(unittest.TestCase):
+
+    def test_print_lyric(self):
+        if not hasattr(sys.stdout, "getvalue"):
+            self.fail("unittest must be run in buffered mode (-b flag)")
+        expected = ("Road To Nowhere by Bullet For My Valentine\n\n"
+                    "blablabla\n\n"
+                    "2bla2bla2bla\n\n")
+        azlyrics.print_artist_music_lyric("Bullet For My Valentine", "Road To Nowhere", ["blablabla", "2bla2bla2bla"])
+        self.assertEqual(expected, sys.stdout.getvalue())

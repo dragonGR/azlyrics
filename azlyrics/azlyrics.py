@@ -22,15 +22,12 @@ def get_lyrics_from_page(page):
     lyrics = [tag.getText() for tag in lyrics_tags]
     return lyrics
 
-def printing(artist, title, save, lyrics):    
-    for x in lyrics:
-        print(x, end="\n\n")
-    if save == True:
-        saving(artist, title, lyrics)
-    elif save == False:
-        pass
+def print_artist_music_lyric(artist, music, lyrics):    
+    print("{} by {}".format(music, artist), end="\n\n")
+    for line in lyrics:
+        print(line, end="\n\n")
             
-def saving(artist, title, lyrics):
+def save_lyrics_to_file(artist, title, lyrics):
         f = open(artist + '_' + title + '.txt', 'w')
         f.write("\n".join(lyrics).strip())
         f.close()
