@@ -1,32 +1,22 @@
-AzLyricsAPI (http://www.azlyrics.com)
-===========
+# python-azlyrics
+A simple CLI and *API* to fetch lyrics from azlyrics
 
-These are a simple API for AzLyrics written in Python. Other functions will be added in future.
-I didn't use other API or other services, this is from scratch.
+## Install
+Just do `pip install git+https://github.com/ffmarcos/python-azlyrics`
 
-Features
-===
+## Usage
+Use with `azlyrics "Lady Gaga" "Telephone"` and it will output the lyric to the screen
 
-- Print lyrics in Terminal.
-- Save lyrics in a .txt file.
+if you wish to save to a file, just use the `-s path` flag
 
-Roadmap
----
+## *API*
 
-I would like to add other feature:
+The *API* is very simple, is composed of five (5) functions:
+- `url_from_artist_music(artist, music)` (Generate a valid azlyrics url from an artist and a music title)
+- `get_page_from_url(url)` (fetch the page from ~~the upper url~~ a valid url)
+- `get_lyrics_from_page(page)` (extract the lyrcs from ~~the upper page~~ a valid azlyrics page)
+- `print_artist_music_lyrics(artist, music, lyrics)` (output the lyric with the title being the artist and the music)
+- `get_lyrics(artist, music)` does everything above
 
-- Printer service
-- Paste lyrics in web with the help of services like Pastebin, Google Docs and more.
-
-
-Usage
-====
-
-<pre><code='python'>import api.azapi #If API's script is in '/api/azapi.py'.
-api.azapi.generating(artist, title, save)</code></pre>
-
-- 'artist' variable must be a <b>char</b> value.
-- 'title' variable must be a <b>char</b> value.
-- 'save' variable must be a <b>boolean</b> value.
-
-
+## Tests
+Uses unittest, `python -m unittest -b`
