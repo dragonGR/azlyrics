@@ -45,7 +45,7 @@ class PrintAndSaveTest(unittest.TestCase):
     def test_print_lyric(self):
         if not hasattr(sys.stdout, "getvalue"):
             self.fail("unittest must be run in buffered mode (-b flag)")
-        expected = ("Road To Nowhere by Bullet For My Valentine\n\n"
+        expected = ("Road To Nowhere by Bullet For My Valentine\n"
                     "blablabla\n\n"
                     "2bla2bla2bla\n\n")
         azlyrics.print_artist_music_lyric("Bullet For My Valentine", "Road To Nowhere", ["blablabla", "2bla2bla2bla"])

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request, urllib.error, urllib.parse
+import argparse
 
 def url_from_artist_music(artist, music):
         if artist and music:
@@ -23,11 +24,17 @@ def get_lyrics_from_page(page):
     return lyrics
 
 def print_artist_music_lyric(artist, music, lyrics):    
-    print("{} by {}".format(music, artist), end="\n\n")
+    print("{} by {}".format(music, artist), end="\n")
     for line in lyrics:
         print(line, end="\n\n")
-            
-def save_lyrics_to_file(artist, title, lyrics):
-        f = open(artist + '_' + title + '.txt', 'w')
+
+def save_lyrics_to_file(path):
+    with open(path, "w") as f:
         f.write("\n".join(lyrics).strip())
-        f.close()
+
+def get_lyrics(artist, music):
+    url = url_from_artist_music(artist, music)
+    page = get_page_from_url(url)
+    lyrics = get_lyrics_from_page(page)
+    return lyrics
+
