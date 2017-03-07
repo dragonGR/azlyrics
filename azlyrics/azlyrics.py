@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request, urllib.error, urllib.parse
-import argparse
+import argparse, sys
 
 def url_from_artist_music(artist, music):
     if artist and music:
@@ -14,8 +14,13 @@ def url_from_artist_music(artist, music):
     return url
 
 def get_page_from_url(url):
-    page = urllib.request.urlopen(url)
-    return page.read() 
+    try:
+        page = urllib.request.urlopen(url)
+        return page.read() 
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            print("Music not found")
+            sys.exit(1)
 
 def get_lyrics_from_page(page):
     soup = BeautifulSoup(page, "html.parser")
