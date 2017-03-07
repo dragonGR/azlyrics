@@ -1,33 +1,16 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-#       AZLyricsAPI.py, mini-API for AZLyrics
-#
-#       Copyright 2013 Francesco Guarneri <Black_Ram>
-#
-#       This program is free software; you can redistribute it and/or modify
-#       it under the terms of the GNU General Public License as published by
-#       the Free Software Foundation; either version 2 of the License, or
-#       (at your option) any later version.
-#
-#       This program is distributed in the hope that it will be useful,
-#       but WITHOUT ANY WARRANTY; without even the implied warranty of
-#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#       GNU General Public License for more details.
-#
-#       You should have received a copy of the GNU General Public License
-#       along with this program; if not, write to the Free Software
-#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#       MA 02110-1301, USA.
-
 from bs4 import BeautifulSoup
 import urllib.request, urllib.error, urllib.parse
 
-def generating(artist, title, save):
-        artist = artist.lower().replace(" ", "%20")
-        title = title.lower().replace(" ", "%20")
-        generate_url = 'http://azlyrics.com/lyrics/'+artist+'/'+title +'.html'
-        processing(generate_url, artist, title, save)
+def url_from_artist_music(artist, music):
+        if artist and music:
+            artist = artist.lower().replace(" ", "")
+            music = music.lower().replace(" ", "")
+        else:
+            artist = "rickastley"
+            music = "nevergonnagiveyouup"
+
+        url = "https://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
+        return url
         
 def processing(generate_url, artist, title, save):
     response = urllib.request.urlopen(generate_url)
