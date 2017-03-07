@@ -28,7 +28,7 @@ def get_lyrics_from_page(page):
     lyrics = [tag.getText() for tag in lyrics_tags]
     return lyrics
 
-def print_artist_music_lyric(artist, music, lyrics):    
+def print_artist_music_lyrics(artist, music, lyrics):    
     print("{} by {}".format(music, artist), end="\n")
     for line in lyrics:
         print(line, end="\n\n")
@@ -57,4 +57,4 @@ def run():
     if args.path:
         save_lyrics_to_file(args.path)
     else:
-        print_artist_music_lyric(args.artist, args.music, lyrics)
+        print_artist_music_lyrics(args.artist, args.music, lyrics)

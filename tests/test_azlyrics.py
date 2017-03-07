@@ -48,5 +48,5 @@ class PrintAndSaveTest(unittest.TestCase):
         expected = ("Road To Nowhere by Bullet For My Valentine\n"
                     "blablabla\n\n"
                     "2bla2bla2bla\n\n")
-        azlyrics.print_artist_music_lyric("Bullet For My Valentine", "Road To Nowhere", ["blablabla", "2bla2bla2bla"])
+        azlyrics.print_artist_music_lyrics("Bullet For My Valentine", "Road To Nowhere", ["blablabla", "2bla2bla2bla"])
         self.assertEqual(expected, sys.stdout.getvalue())
