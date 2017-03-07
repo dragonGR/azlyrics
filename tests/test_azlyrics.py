@@ -1,6 +1,6 @@
 import unittest, sys
 
-from azlyrics import azlyrics 
+import azlyrics 
 
 class UrlTest(unittest.TestCase):
 
