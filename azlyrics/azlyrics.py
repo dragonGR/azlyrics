@@ -1,6 +1,6 @@
-from bs4 import BeautifulSoup
-import urllib.request, urllib.error, urllib.parse
 import argparse, sys, re
+import urllib.request, urllib.error
+from bs4 import BeautifulSoup
 
 def normalize_artist_music(artist, music):
     if artist and music:
@@ -31,14 +31,13 @@ def get_lyrics_from_page(page):
     lyrics = [tag.getText() for tag in lyrics_tags]
     return lyrics
 
-def print_artist_music_lyrics(artist, music, lyrics):    
-    print("{} by {}".format(music, artist), end="\n")
-    for line in lyrics:
-        print(line, end="\n\n")
+def format_lyrics(lyrics):    
+    formated_lyrics = "\n".join(lyrics)
+    return formated_lyrics
 
 def save_lyrics_to_file(path, lyrics):
     with open(path, "w") as f:
-        f.write("\n".join(lyrics).strip())
+        f.write(lyrcs)
 
 def get_lyrics(artist, music):
     url = url_from_artist_music(artist, music)
@@ -56,8 +55,9 @@ def get_args():
 
 def run():
     args = get_args()
-    lyrics = get_lyrics(args.artist, args.music)
+    lyrics = format_lyrics(get_lyrics(args.artist, args.music))
     if args.path:
         save_lyrics_to_file(args.path, lyrics)
     else:
-        print_artist_music_lyrics(args.artist, args.music, lyrics)
+        print("{} by {}".format(args.music, args.artist))
+        print(lyrics)

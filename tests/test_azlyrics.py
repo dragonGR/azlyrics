@@ -4,6 +4,11 @@ import azlyrics
 
 class UrlTest(unittest.TestCase):
 
+    def test_normalize_artist_music(self):
+        artist, music = azlyrics.normalize_artist_music("ARTISTA", "muSICA")
+        self.assertEqual("artista", artist)
+        self.assertEqual("musica", music)
+
     def test_url_default_generate_rick_roll(self):
         expected = "http://azlyrics.com/lyrics/rickastley/nevergonnagiveyouup.html"
         self.assertEqual(expected, azlyrics.url_from_artist_music("", ""))
@@ -15,6 +20,11 @@ class UrlTest(unittest.TestCase):
     def test_url_spaces(self):
         expected = "http://azlyrics.com/lyrics/brunoetrio/garimpo.html"
         self.assertEqual(expected, azlyrics.url_from_artist_music("Bruno e Trio", "Garimpo"))
+    
+    @unittest.skip
+    def test_url_with_special_chars(self):
+        url = ""
+
 
 class PageTets(unittest.TestCase):
 
@@ -42,11 +52,6 @@ class LyricTest(unittest.TestCase):
 
 class PrintAndSaveTest(unittest.TestCase):
 
-    def test_print_lyric(self):
-        if not hasattr(sys.stdout, "getvalue"):
-            self.fail("unittest must be run in buffered mode (-b flag)")
-        expected = ("Road To Nowhere by Bullet For My Valentine\n"
-                    "blablabla\n\n"
-                    "2bla2bla2bla\n\n")
-        azlyrics.print_artist_music_lyrics("Bullet For My Valentine", "Road To Nowhere", ["blablabla", "2bla2bla2bla"])
-        self.assertEqual(expected, sys.stdout.getvalue())
+    def test_format_lyric(self):
+        expected = "blablabla\n2bla2bla2bla"
+        self.assertEqual(expected, azlyrics.format_lyrics(["blablabla", "2bla2bla2bla"]))
