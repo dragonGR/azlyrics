@@ -55,3 +55,9 @@ class PrintAndSaveTest(unittest.TestCase):
     def test_format_lyric(self):
         expected = "blablabla\n2bla2bla2bla"
         self.assertEqual(expected, azlyrics.format_lyrics(["blablabla", "2bla2bla2bla"]))
+
+class CacheTest(unittest.TestCase):
+    
+    @unittest.skip
+    def create_cache(self):
+        return 

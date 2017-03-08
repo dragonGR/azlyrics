@@ -2,6 +2,8 @@ import argparse, sys, re
 import urllib.request, urllib.error
 from bs4 import BeautifulSoup
 
+from azlyrics.cache import Cache
+
 def normalize_artist_music(artist, music):
     if artist and music:
         artist = re.sub(r'\W+', '', artist.lower())
@@ -55,7 +57,12 @@ def get_args():
 
 def run():
     args = get_args()
-    lyrics = format_lyrics(get_lyrics(args.artist, args.music))
+    c = Cache()
+    cache_key = '_'.join(normalize_artist_music(args.artist, args.music))
+    lyrics = c.get(cache_key)
+    if lyrics is None:
+        lyrics = format_lyrics(get_lyrics(args.artist, args.music))
+        c.add(cache_key, lyrics)
     if args.path:
         save_lyrics_to_file(args.path, lyrics)
     else:

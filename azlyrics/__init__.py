@@ -1,2 +1,3 @@
-__all__ = ["azlyrics"]
+__all__ = ["azlyrics", "cache"]
 from .azlyrics import *
+from .cache import Cache
