@@ -2,14 +2,17 @@ from bs4 import BeautifulSoup
 import urllib.request, urllib.error, urllib.parse
 import argparse, sys, re
 
-def url_from_artist_music(artist, music):
+def normalize_artist_music(artist, music):
     if artist and music:
         artist = re.sub(r'\W+', '', artist.lower())
         music = re.sub(r'\W+', '', music.lower())
     else:
         artist = "rickastley"
         music = "nevergonnagiveyouup"
+    return artist, music
 
+def url_from_artist_music(artist, music):
+    artist, music = normalize_artist_music(artist, music)
     url = "http://azlyrics.com/lyrics/{}/{}.html".format(artist, music)
     return url
 
