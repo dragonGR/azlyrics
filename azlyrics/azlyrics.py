@@ -42,6 +42,9 @@ class Azlyrics(object):
         formated_lyrics = "\n".join(lyrics)
         return formated_lyrics
 
+    def format_title(self):
+        return "{} by {}".format(self.music.title(), self.artist.title())
+
     def get_lyrics(self):
         page = self.get_page()
         lyrics = self.extract_lyrics(page)
@@ -67,5 +70,5 @@ def run():
     if args.path:
         save_lyrics_to_file(args.path, lyrics)
     else:
-        print("{} by {}".format(args.music, args.artist))
+        print(az.format_title())
         print(lyrics)

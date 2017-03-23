@@ -66,6 +66,11 @@ class PrintAndSaveTest(unittest.TestCase):
         az = Azlyrics("", "")
         self.assertEqual(expected, az.format_lyrics(["blablabla", "2bla2bla2bla"]))
 
+    def test_title_capitalized(self):
+        expected = "Sun by Two Door Cinema Club"
+        az = Azlyrics("Two door cinema club", "sun")
+        self.assertEqual(expected, az.format_title())
+
 class CacheTest(unittest.TestCase):
     
     @unittest.skip
