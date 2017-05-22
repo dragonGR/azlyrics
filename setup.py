@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name="azlyrics",
       version="0.0.1",
-      url="https://github.com/ffmarcos/python-azlyrics",
+      url="https://github.com/mracos/python-azlyrics",
       author="Marcos Ferreira",
       author_email="merkkp@gmail.com",
       description="'API' and CLI program to fetch lyrics from azlyrics",

@@ -2,7 +2,7 @@
 A simple CLI and *API* to fetch lyrics from azlyrics
 
 ## Install
-Just do `pip install git+https://github.com/ffmarcos/python-azlyrics`
+Just do `pip install git+https://github.com/mracos/python-azlyrics`
 
 ## Usage
 Use with `azlyrics "Lady Gaga" "Telephone"` and it will output the lyric to the screen
