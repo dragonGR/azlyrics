@@ -2,10 +2,10 @@
 A simple CLI and *API* to fetch lyrics from azlyrics
 
 ## Install
-Just do `pip install git+https://github.com/mracos/python-azlyrics`
+Assuming you are not a noob. You know the way... ;)
 
 ## Usage
-Use with `azlyrics "Lady Gaga" "Telephone"` and it will output the lyric to the screen
+Use with `azlyrics "Nickelback" "How you remind me"` and it will output the lyric to the screen
 
 if you wish to save to a file, just use the `-s path` flag
 
@@ -35,6 +35,3 @@ and is composed of four (4) functions:
 - `c.destroy()` (Removes the cache folder)
 
 the format of the *cache* is a file with the name being the key, with the content supplied
-
-## Tests
-Uses unittest, `python -m unittest`
